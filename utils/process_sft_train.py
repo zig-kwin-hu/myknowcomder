@@ -13,9 +13,9 @@ def create_default_stats():
     }
 
 class JsonStructureAnalyzer:
-    def __init__(self):
+    def __init__(self, output_file_path=None):
         self.all_paths = defaultdict(create_default_stats)
-    
+        self.output_file_path = output_file_path
     def update_stats(self, path: str, value) -> None:
         """Update statistics for a given path and value"""
         stats = self.all_paths[path]
@@ -26,7 +26,8 @@ class JsonStructureAnalyzer:
         stats['types'].add(value_type)
         
         # Handle null values
-        if value is None:
+        if value is None or (isinstance(value, str) and value.lower() in ["null", "none"]) \
+            or (isinstance(value, list) and len(value) == 0) or (isinstance(value, str) and len(value) == 0):
             stats['null_count'] += 1
             return
             
@@ -54,6 +55,7 @@ class JsonStructureAnalyzer:
 
     def print_structure(self) -> None:
         """Print the structure in a tree-like format"""
+        towrite = []
         for path in sorted(self.all_paths.keys()):
             depth = path.count('.')
             indent = "  " * depth
@@ -62,7 +64,7 @@ class JsonStructureAnalyzer:
             # Prepare statistics string
             types_str = ", ".join(sorted(stats['types']))
             count_str = f"count: {stats['count']}"
-            null_str = f"null: {stats['null_count']}" if stats['null_count'] > 0 else ""
+            null_str = f"null: {stats['null_count']}"
             
             # Add min/max for numeric fields
             minmax_str = ""
@@ -81,9 +83,13 @@ class JsonStructureAnalyzer:
             stats_str = " | ".join(stats_parts)
             
             print(f"{indent}├─ {path.split('.')[-1]} ({stats_str})")
+            towrite.append(f"{indent}├─ {path.split('.')[-1]} ({stats_str})\n")
+        if self.output_file_path is not None:
+            with open(self.output_file_path, 'w') as f:
+                f.writelines(towrite)
 
-def analyze_json_files(input_file_path) -> None:
-    analyzer = JsonStructureAnalyzer()
+def analyze_json_files(input_file_path, output_file_path) -> None:
+    analyzer = JsonStructureAnalyzer(output_file_path)
     input_file = open(input_file_path, 'r')
     # show tqdm progress bar
     for line in tqdm(input_file):
@@ -101,6 +107,10 @@ def analyze_json_files(input_file_path) -> None:
 # Example usage
 if __name__ == "__main__":
     # Example input
-    input_file_path = "SFT_data/train/sft2_aligned_uie_prompt_v20_guideline_import_v1-ner-all-re-ee-repeat.jsonl"
-    analyze_json_files(input_file_path)
+    #input_file_path = "SFT_data/train/sft2_aligned_uie_prompt_v20_guideline_import_v1-ner-all-re-ee-repeat.jsonl"
+    tasks = ['EAE','ED','NER','RE']
+    for task in tasks:
+        input_file_path = f"SFT_data/benchmark/{task}/test-prompt.json"
+        output_file_path = f"SFT_data/benchmark/{task}/test-prompt_structure.txt"
+        analyze_json_files(input_file_path, output_file_path)
     
