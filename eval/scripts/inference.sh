@@ -3,9 +3,9 @@
 #SBATCH --gres=gpu:1
 #SBATCH -p vip_gpu_512_scx6592
 
-module load compilers/cuda/11.8 anaconda/2021.11 compilers/gcc/9.3.0 cudnn/8.4.0.27_cuda11.x
-export LD_LIBRARY_PATH=/home/bingxing2/apps/compilers/gcc/12.2.0/lib64:/home/bingxing2/apps/compilers/cuda/cuda-11.8_dev230901:$LD_LIBRARY_PATH
-source activate KnowCoder_sft_env 
+#module load compilers/cuda/11.8 anaconda/2021.11 compilers/gcc/9.3.0 cudnn/8.4.0.27_cuda11.x
+#export LD_LIBRARY_PATH=/home/bingxing2/apps/compilers/gcc/12.2.0/lib64:/home/bingxing2/apps/compilers/cuda/cuda-11.8_dev230901:$LD_LIBRARY_PATH
+#source activate KnowCoder_sft_env 
 export PYTHONUNBUFFERED=1
 export TOKENIZERS_PARALLELISM=True
 export OMP_NUM_THREADS=1

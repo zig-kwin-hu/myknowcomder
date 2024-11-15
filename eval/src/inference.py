@@ -99,7 +99,6 @@ if __name__ == '__main__':
 
     if args.model_dir is None:
         raise ValueError('model_dir is None')
-
     output_dir = os.path.dirname(args.output_file)
     if not os.path.exists(output_dir):
         os.makedirs(output_dir, exist_ok=True)

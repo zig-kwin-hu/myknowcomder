@@ -1,0 +1,74 @@
+nodes,gpus,mp_size,node_rank,master_addr,master_port,dhostfile
+1,4,,1,1,29501,
+[W socket.cpp:663] [c10d] The client socket has failed to connect to ?UNKNOWN? (errno: 110 - Connection timed out).
+[W socket.cpp:663] [c10d] The client socket has failed to connect to ?UNKNOWN? (errno: 110 - Connection timed out).
+[E socket.cpp:719] [c10d] The client socket has failed to connect to any network address of (1, 29501).
+Traceback (most recent call last):
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 255, in launch_agent
+    result = agent.run()
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 736, in run
+    result = self._invoke_run(role)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 871, in _invoke_run
+    self._initialize_workers(self._worker_group)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 705, in _initialize_workers
+    self._rendezvous(worker_group)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 546, in _rendezvous
+    store, group_rank, group_world_size = spec.rdzv_handler.next_rendezvous()
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/rendezvous/static_tcp_rendezvous.py", line 54, in next_rendezvous
+    self._store = TCPStore(  # type: ignore[call-arg]
+RuntimeError: The client socket has failed to connect to any network address of (1, 29501). The client socket has failed to connect to ?UNKNOWN? (errno: 110 - Connection timed out).
+nodes,gpus,mp_size,node_rank,master_addr,master_port,dhostfile
+1,4,,1,1,29501,
+Traceback (most recent call last):
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 546, in _rendezvous
+    store, group_rank, group_world_size = spec.rdzv_handler.next_rendezvous()
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/rendezvous/static_tcp_rendezvous.py", line 54, in next_rendezvous
+    self._store = TCPStore(  # type: ignore[call-arg]
+RuntimeError: Interrupted system call
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 255, in launch_agent
+    result = agent.run()
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 736, in run
+    result = self._invoke_run(role)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 871, in _invoke_run
+    self._initialize_workers(self._worker_group)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 705, in _initialize_workers
+    self._rendezvous(worker_group)
+  File "/storage/zkhu/anaconda3/envs/knowcoder_sft_env/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+KeyboardInterrupt
