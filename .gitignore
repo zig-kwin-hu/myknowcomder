@@ -1,3 +1,5 @@
 
 *.zip
 SFT_data/
+eval/outputs/
+*.log
